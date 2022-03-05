@@ -1,0 +1,8 @@
+import whatsapp_text_cleaner as wtc
+
+class text:
+    def __init__(self,filepath,df=None):
+       self.filepath=filepath
+    def clean_text(self):
+        return wtc.load_df(self.filepath)
+
