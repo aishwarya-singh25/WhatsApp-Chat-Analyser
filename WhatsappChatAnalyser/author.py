@@ -1,5 +1,13 @@
 import pandas as pd
 import datetime
+import re
+import numpy as np
+import emoji
+import chat
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 class Author:
   def __init__(self, name=None, Date=None , Time=None , Message=None ,Hours=None):
     self.name = name
@@ -70,6 +78,11 @@ class Author:
     df_daysInGroup=author_info.drop(['Last_date','Start_date'],axis=1).rename(columns={'Date_diff':'daysInGroup'})
     return df_daysInGroup
 
+  def get_author_text_info(self, df,extra_StopWords):
+    author_buffer_details=chat.Chat().text_info(self, df,extra_StopWords)
+    return author_buffer_details
+
+
   def get_stats(self,df):
     self.update_info(df)
     author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
@@ -114,6 +127,11 @@ class Author:
     author_buffer_details=author_buffer_details.merge(self.get_frequency(df),on='Author',how='left')#Frequency
     author_buffer_details=author_buffer_details.merge(self.get_aggressiveness(df),on='Author',how='left')#Aggressiveness 
     return  author_buffer_details
+
+  
+
+
+  
 
 
   

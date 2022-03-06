@@ -4,6 +4,7 @@ import re
 import numpy as np
 import emoji
 import nltk
+nltk.data.path.append('/Users/stlp/Downloads/')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
@@ -44,7 +45,9 @@ class Chat:
     return ' '.join(lstAllWords) 
 
   def text_info(self, df,extra_StopWords):
+    
     self.update_info(df)
+    #author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     dstr_grp=''
     dlist_grp=[]
     df['avgWordspermessage'] = 0
@@ -67,8 +70,8 @@ class Chat:
         NW.append(len(n.split()))#store number of words in each message
 
       df['avgWordspermessage'][df['Author']==name] = np.mean(NW)#mean of length of all words
-      #df['minWordspermessage'][df['Author']==name] = np.min(NW)#min number of words
-      #df['maxWordspermessage'][df['Author']==name] = np.max(NW)#max number of words
+      df['minWordspermessage'][df['Author']==name] = np.min(NW)#min number of words
+      df['maxWordspermessage'][df['Author']==name] = np.max(NW)#max number of words
 
       NE = []#blank list to store emojis
       NE = [e for e in dstr if e in emoji.UNICODE_EMOJI]
@@ -87,7 +90,6 @@ class Chat:
       #remove those words which are in stop and emojis
       Words_df = pd.DataFrame({'Words':lstAllWords})
       Words_df = Words_df[-Words_df['Words'].isin(emoji.UNICODE_EMOJI.keys())]
-
       WordsFreqdf = pd.DataFrame(Words_df.groupby(['Words'])['Words'].count())
       WordsFreqdf.columns = ['Freq']
       WordsFreqdf = WordsFreqdf.reset_index()
@@ -96,4 +98,7 @@ class Chat:
       WordsFreqdf = WordsFreqdf.sort_values('Freq',ascending=False)
       df['top5words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:5])#Top 5 words
 
-    return df    
+    author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
+    author_buffer_details=author_buffer_details.merge(df[['Author','avgWordspermessage','minWordspermessage',
+    'maxWordspermessage','emovocab','totalemojis','top5emojis','vocab','top5words']].drop_duplicates(),on='Author',how='left')
+    return author_buffer_details    
