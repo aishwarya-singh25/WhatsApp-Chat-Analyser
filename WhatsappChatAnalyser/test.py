@@ -10,6 +10,7 @@ from IPython.display import set_matplotlib_formats
 warnings.filterwarnings("ignore")
 import nltk
 import whatsapp_chat_visualizer as wcv
+explode=[0.1,0,0.1,0.2,0.4]
 nltk.data.path.append('/Users/stlp/Downloads/')
 extra_StopWords = ["thats","dont","<Media omitted>","media","Media","Omitted","omitted","also","like","https","from","all","also","and","any","are","but","can","cant","cry","due","etc","few","for","get","had","has","hasnt","have","her","here","hers","herself","him","himself","his","how","inc","into","its","ltd","may","nor","not","now","off","once","one","only","onto","our","ours","out","over","own","part","per","put","see","seem","she","than","that","the","their","them","then","thence","there","these","they","this","those","though","thus","too","top","upon","very","via","was","were","what","when","which","while","who","whoever","whom","whose","why","will","with","within","without","would","yet","you","your","yours","the"]
 filepath='/Users/stlp/Downloads/WhatsApp Chat with UW MSDS Fall21.txt'
@@ -26,7 +27,8 @@ C.update_info(text_df)
 df=A.get_frequency(text_df)
 
 print(df)
-wcv.bar_plot(df,max=10,sort=False)
+wcv.bar_plot(df,max=5,sort=False)
+wcv.pie(df,max=5,explode=explode)
 #df=A.author_text_info(df_new,extra_StopWords)
 
 print("code ran succesfully")

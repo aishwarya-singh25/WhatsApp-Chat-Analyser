@@ -3,7 +3,7 @@ import numpy as np
 from IPython.display import set_matplotlib_formats
 
 #Take dataframe with dimension :,1
-def bar_plot(df,title=None,max=None,sort=True): #create a bar plot to display results
+def bar_plot(df,title=None,max=None,sort=False): #create a bar plot to display results
     if max==None:
         max_row=len(df)
     else:
@@ -43,3 +43,25 @@ def bar_plot(df,title=None,max=None,sort=True): #create a bar plot to display re
         #print(str(i)+" "+str(v))
         axes.text(v + v/100, i , str(v), color=bars[0].get_facecolor(), fontweight='bold')
     plt.show()
+
+def pie(df,explode,title=None,max=None,sort=False):
+    if max==None:
+        max_row=len(df)
+    else:
+        max_row=max
+    x_label= str(df.columns[1])
+    y_label= str(df.columns[0])
+    df=df.sort_values(by=x_label,ascending=sort).head(max_row)
+    labels = np.array(df.iloc[:,0])
+    sizes = df.iloc[:,1]
+    # only "explode" the 2nd slice (i.e. 'Hogs')
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes,explode=explode, labels=labels, autopct='%1.1f%%', startangle=90)
+    # Equal aspect ratio ensures that pie is drawn as a circle
+    ax1.axis('equal')  
+    plt.tight_layout()
+    ax1.set_title(title,pad=25)
+    plt.show()
+
+def wordCloud():
+    
