@@ -101,22 +101,20 @@ class Author:
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Average number of messages per day for active days" + "\033[0m")
     author_buffer_details['Agressiveness'] = (author_buffer_details['Messages_texted']/author_buffer_details['Days_texted']).round(2)
-    author_buffer_details[['Author','Agressiveness']].sort_values(by='Agressiveness',ascending=False)
-    return author_buffer_details
+    return author_buffer_details[['Author','Agressiveness']].sort_values(by='Agressiveness',ascending=False)
+   
 
   def get_consistency(self,df):
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Percentage of time texted atleast once since the start date " + "\033[0m")
     author_buffer_details['Consistency'] = (100*author_buffer_details['Days_texted']/author_buffer_details['daysInGroup']).round()
-    author_buffer_details[['Author','Consistency']].sort_values(by='Consistency',ascending=False)
-    return author_buffer_details
+    return author_buffer_details[['Author','Consistency']].sort_values(by='Consistency',ascending=False)
 
   def get_frequency(self,df):
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Number of messages per day on whatsapp since the start date" + "\033[0m")
     author_buffer_details['Frequency'] = ((author_buffer_details['Messages_texted']+author_buffer_details['Media_shared'])/author_buffer_details['daysInGroup'])
-    author_buffer_details[['Author','Frequency']].sort_values(by='Frequency',ascending=False)
-    return author_buffer_details
+    return author_buffer_details[['Author','Frequency']].sort_values(by='Frequency',ascending=False)
 
   def get_metrics(self,df):
     self.update_info(df)
