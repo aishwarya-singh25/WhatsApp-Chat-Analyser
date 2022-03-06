@@ -23,7 +23,7 @@ C.update_info(text_df)
 #df_days_texted=pd.DataFrame(text_df.groupby('Author')['Date'].nunique()).rename(columns={'Date':'Days_texted'})
 #df=A.get_metrics(text_df)
 #df_new=A.remove_null_authors(text_df)
-df=A.get_consistency(text_df)
+df=A.get_frequency(text_df)
 
 print(df)
 wcv.bar_plot(df,max=10,sort=False)
