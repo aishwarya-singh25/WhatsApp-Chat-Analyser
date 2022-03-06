@@ -78,8 +78,8 @@ class Author:
     df_daysInGroup=author_info.drop(['Last_date','Start_date'],axis=1).rename(columns={'Date_diff':'daysInGroup'})
     return df_daysInGroup
 
-  def get_author_text_info(self, df,extra_StopWords):
-    author_buffer_details=chat.Chat().text_info(self, df,extra_StopWords)
+  def get_author_text_info(self, df,extra_StopWords,wordCloud=False):
+    author_buffer_details=chat.Chat().get_text_info(df,extra_StopWords,wordCloud)
     return author_buffer_details
 
 

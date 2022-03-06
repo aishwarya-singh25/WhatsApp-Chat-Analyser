@@ -9,6 +9,8 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import whatsapp_chat_visualizer as wcv
+maskpath='/Users/stlp/Downloads/wordcloud trump.png'
 class Chat:
   def __init__(self,message=None,name=None):
     self.message = message
@@ -44,7 +46,7 @@ class Chat:
         lstAllWords[i] = (lstAllWords[i]).lower()
     return ' '.join(lstAllWords) 
 
-  def text_info(self, df,extra_StopWords):
+  def get_text_info(self, df,extra_StopWords,wordCloud=False):
     
     self.update_info(df)
     #author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
@@ -97,6 +99,9 @@ class Chat:
       df['vocab'][df['Author']==name] = len(WordsFreqdf)#total number of unique words
       WordsFreqdf = WordsFreqdf.sort_values('Freq',ascending=False)
       df['top5words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:5])#Top 5 words
+      if wordCloud== True:
+        print('\U0001F923'+name)
+        wcv.wordCloud(WordsFreqdf,maskpath)
 
     author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     author_buffer_details=author_buffer_details.merge(df[['Author','avgWordspermessage','minWordspermessage',
