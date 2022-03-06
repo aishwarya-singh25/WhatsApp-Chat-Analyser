@@ -26,6 +26,9 @@ def AuthorStart(s):
         '([\w]+):',                        # First Name
         '([\w]+[\s]+[\w]+):',              # First Name + Last Name
         '([\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
+        '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
+        '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
+        '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
         '([+]\d{2} \d{5} \d{5}):',         # Mobile Number (India)
         '([+]\d{2} \d{3} \d{3} \d{4}):',   # Mobile Number (US)
         '([+]\d{2} \d{4} \d{7})'           # Mobile Number (Europe)
@@ -51,7 +54,7 @@ def getDetails(line):
     return date, time, author, message
 
 
-def load_df(filepath):
+def intial_dataframe(filepath):
     parsedData = []  # List to keep track of data so it can be used by a Pandas dataframe
     ChatPath = filepath
     with open(ChatPath, encoding="utf-8") as fp:
@@ -86,4 +89,33 @@ def load_df(filepath):
 
 
     df = pd.DataFrame(parsedData, columns=['Date', 'Time', 'Author', 'Message'])
+    return df
+
+#Insert hours of the day in 24hrs format
+def convert24(str1): 
+      
+    # Checking if last two elements of time 
+    # is AM and first two elements are 12 
+    if (str1[-2:]).lower() == "am" and (str1[:2]).lower() == "12": 
+        return str(0) 
+          
+    # remove the AM     
+    elif (str1[-2:]).lower() == "am": 
+        return str1[:2].replace(':','') 
+      
+    # Checking if last two elements of time 
+    # is PM and first two elements are 12    
+    elif (str1[-2:]).lower() == "pm" and (str1[:2]).lower() == "12": 
+        return str1[:2].replace(':','')  
+          
+    else: 
+          
+        # add 12 to hours and remove PM 
+        return str(int(str1[:2].replace(':','')) + 12) 
+          
+
+def load_clean_dataframe(filepath):
+    df=intial_dataframe(filepath)
+    df['Date']=pd.to_datetime(df['Date'],dayfirst=True)# converting date from string to date format
+    df['Hours']=df['Time'].apply(lambda x : convert24(x.strip()))
     return df
