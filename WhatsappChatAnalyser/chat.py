@@ -4,6 +4,7 @@ import re
 import numpy as np
 import emoji
 import nltk
+import sentiment
 nltk.data.path.append('/Users/stlp/Downloads/')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
@@ -44,9 +45,7 @@ class Chat:
     #convert all the words to lower case
     for i in range(0,len(lstAllWords)):
         lstAllWords[i] = (lstAllWords[i]).lower()
-    return ' '.join(lstAllWords)
-  def check():
-        print("Works")
+    return ' '.join(lstAllWords) 
 
   def get_text_info(self, df,extra_StopWords,wordCloud=False):
     
@@ -103,16 +102,7 @@ class Chat:
       df['top5words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:5])#Top 5 words
       df['words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:])#All words
     
-      lstLines = sent_tokenize(dstr) #tokenize sentences
-      lstLines = [t.lower() for t in lstLines]
-      #Remove all the punctuations; 3rd argument in maketrans means it is mapped to None
-      lstLines = [t.translate(str.maketrans('','',string.punctuation)) for t in lstLines]
-      SenScores = [nltk_sentiment(t) for t in lstLines]
-      # create dataframe
-      df_temp = pd.DataFrame(lstLines, columns=['Lines'])
-      df_temp['Pos']=[t['pos'] for t in SenScores]
-      df_temp['Neu']=[t['neu'] for t in SenScores]
-      df_temp['Neg']=[t['neg'] for t in SenScores]
+      df = sentiment.sentiment_author(name,dstr,df)
       if wordCloud== True:
         print('\U0001F923'+name)
         wcv.wordCloud(WordsFreqdf,maskpath)
@@ -120,4 +110,4 @@ class Chat:
     author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     author_buffer_details=author_buffer_details.merge(df[['Author','avgWordspermessage','minWordspermessage',
     'maxWordspermessage','emovocab','totalemojis','top5emojis','vocab','top5words','words','Pos', 'Neg', 'Neu']].drop_duplicates(),on='Author',how='left')
-    return author_buffer_details
+    return author_buffer_details    
