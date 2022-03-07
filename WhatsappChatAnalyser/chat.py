@@ -61,6 +61,10 @@ class Chat:
     df['top5emojis'] = 0
     df['vocab'] = 0
     df['top5words'] = 0
+    df['words']=0
+    df['Neg']=0
+    df['Pos']=0
+    df['Neu']=0
     for name in df['Author']:
       data1 = df[df['Author']==name]
       dstr = ' '.join(data1['Message'])# create a single string containing all the words from all the messages
