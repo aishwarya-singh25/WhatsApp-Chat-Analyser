@@ -6,6 +6,7 @@
 
 import string
 import nltk
+import pandas as pd
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
