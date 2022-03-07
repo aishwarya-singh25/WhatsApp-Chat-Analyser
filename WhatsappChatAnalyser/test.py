@@ -8,7 +8,6 @@ print("hello user")
 import author
 import chat
 import whatsapp_text_cleaner as wtc
-import pandas as pd
 import warnings
 import matplotlib.pyplot as plt
 import numpy as np
