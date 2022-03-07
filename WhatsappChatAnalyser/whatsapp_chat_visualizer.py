@@ -5,7 +5,7 @@ import seaborn as sns
 sns.set(style='darkgrid')
 from wordcloud import WordCloud
 from PIL import Image
-#Take dataframe with dimension :,1
+#Take dataframe with dimension :,2, title: title of the chart,max: max number of rows to display,sort: True means descending
 def bar_plot(df,title=None,max=None,sort=False): #create a bar plot to display results
     if max==None:
         max_row=len(df)
@@ -46,7 +46,8 @@ def bar_plot(df,title=None,max=None,sort=False): #create a bar plot to display r
         #print(str(i)+" "+str(v))
         axes.text(v + v/100, i , str(v), color=bars[0].get_facecolor(), fontweight='bold')
     plt.show()
-
+#Take dataframe with dimension :,2,explode: array length should be equal to max
+# title: title of the chart,max: max number of rows to display,sort: True means descending
 def pie(df,explode,title=None,max=None,sort=False):
     if max==None:
         max_row=len(df)
