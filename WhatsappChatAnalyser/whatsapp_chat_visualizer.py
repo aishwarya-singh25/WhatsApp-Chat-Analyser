@@ -1,7 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from IPython.display import set_matplotlib_formats
-
+import seaborn as sns
+sns.set(style='darkgrid')
+from wordcloud import WordCloud
+from PIL import Image
 #Take dataframe with dimension :,1
 def bar_plot(df,title=None,max=None,sort=False): #create a bar plot to display results
     if max==None:
@@ -63,5 +66,29 @@ def pie(df,explode,title=None,max=None,sort=False):
     ax1.set_title(title,pad=25)
     plt.show()
 
-def wordCloud():
+def transform_format(val):#transform the wine mask to generate white backgroun
+    if val == 0:
+        return 255
+    else:
+        return val
+
+def wordCloud(WordsFreqdf,maskpath=None):
+    #prepare data to generate word_cloud
+    #comment_mask = np.array(Image.open(maskpath))#download a wine mask
+    #transformed_comment_mask = np.ndarray((comment_mask.shape[0],comment_mask.shape[1]), np.int32)#instantiate a new transformed with same size as the original one
+    #for i in range(len(comment_mask)):
+    #    transformed_comment_mask[i] = list(map(transform_format, comment_mask[i]))
     
+    d = {'NA':1} #initial dictionary with NA
+    for a, x in WordsFreqdf[0:20].values:
+        d[a] = x
+
+    #Use generate_word_cloud_from_frequency function  
+    wordcloud = WordCloud(width = 1000, height = 1000, 
+                background_color ='white', 
+                #stopwords = stop, 
+                min_font_size = 25, contour_width=3, contour_color='firebrick').generate_from_frequencies(d)
+    plt.figure()
+    plt.imshow(wordcloud, interpolation="bilinear")
+    plt.axis("off")
+    plt.show()

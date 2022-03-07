@@ -34,14 +34,18 @@ C.update_info(text_df)
 #df_days_texted=pd.DataFrame(text_df.groupby('Author')['Date'].nunique()).rename(columns={'Date':'Days_texted'})
 #df=A.get_metrics(text_df)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #df_new=A.remove_null_authors(text_df)
+=======
+df_new=A.remove_null_authors(text_df)
+>>>>>>> bfb9bb285b1f694c0c78f5bbb7e1e9365a04e9c2
 df=A.get_frequency(text_df)
 
 print(df)
-wcv.bar_plot(df,max=5,sort=False)
-wcv.pie(df,max=5,explode=explode)
-#df=A.author_text_info(df_new,extra_StopWords)
-
+#wcv.bar_plot(df,max=5,sort=False)
+#wcv.pie(df,max=5,explode=explode)
+df=A.get_author_text_info(df_new,extra_StopWords,wordCloud=True)
+print(df.head())
 print("code ran succesfully")
 
 =======
