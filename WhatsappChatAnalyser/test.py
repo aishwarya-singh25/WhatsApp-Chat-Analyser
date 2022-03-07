@@ -32,22 +32,12 @@ df_new=A.remove_null_authors(text_df)
 df=A.get_frequency(text_df)
 
 print(df)
-#wcv.bar_plot(df,max=5,sort=False)
-#wcv.pie(df,max=5,explode=explode)
+wcv.bar_plot(df,max=5,sort=False)
+wcv.pie(df,max=5,explode=explode)
 df=A.get_author_text_info(df_new,extra_StopWords,wordCloud=True)
 print(df.head())
 print("code ran succesfully")
 
-
-# In[4]:
-
-
-null_authors=text_df[text_df['Author'].isnull()]
-df_new= text_df.drop(null_authors.index)
-data_check=C.get_text_info(new_df,extra_StopWords,wordCloud=False )
-
-
-# In[ ]:
 
 
 
