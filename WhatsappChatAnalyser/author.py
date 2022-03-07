@@ -1,5 +1,13 @@
 import pandas as pd
 import datetime
+import re
+import numpy as np
+import emoji
+import chat
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 class Author:
   def __init__(self, name=None, Date=None , Time=None , Message=None ,Hours=None):
     self.name = name
@@ -70,6 +78,11 @@ class Author:
     df_daysInGroup=author_info.drop(['Last_date','Start_date'],axis=1).rename(columns={'Date_diff':'daysInGroup'})
     return df_daysInGroup
 
+  def get_author_text_info(self, df,extra_StopWords,wordCloud=False):
+    author_buffer_details=chat.Chat().get_text_info(df,extra_StopWords,wordCloud)
+    return author_buffer_details
+
+
   def get_stats(self,df):
     self.update_info(df)
     author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
@@ -88,22 +101,20 @@ class Author:
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Average number of messages per day for active days" + "\033[0m")
     author_buffer_details['Agressiveness'] = (author_buffer_details['Messages_texted']/author_buffer_details['Days_texted']).round(2)
-    author_buffer_details[['Author','Agressiveness']].sort_values(by='Agressiveness',ascending=False)
-    return author_buffer_details
+    return author_buffer_details[['Author','Agressiveness']].sort_values(by='Agressiveness',ascending=False)
+   
 
   def get_consistency(self,df):
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Percentage of time texted atleast once since the start date " + "\033[0m")
     author_buffer_details['Consistency'] = (100*author_buffer_details['Days_texted']/author_buffer_details['daysInGroup']).round()
-    author_buffer_details[['Author','Consistency']].sort_values(by='Consistency',ascending=False)
-    return author_buffer_details
+    return author_buffer_details[['Author','Consistency']].sort_values(by='Consistency',ascending=False)
 
   def get_frequency(self,df):
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Number of messages per day on whatsapp since the start date" + "\033[0m")
     author_buffer_details['Frequency'] = ((author_buffer_details['Messages_texted']+author_buffer_details['Media_shared'])/author_buffer_details['daysInGroup'])
-    author_buffer_details[['Author','Frequency']].sort_values(by='Frequency',ascending=False)
-    return author_buffer_details
+    return author_buffer_details[['Author','Frequency']].sort_values(by='Frequency',ascending=False)
 
   def get_metrics(self,df):
     self.update_info(df)
@@ -114,6 +125,11 @@ class Author:
     author_buffer_details=author_buffer_details.merge(self.get_frequency(df),on='Author',how='left')#Frequency
     author_buffer_details=author_buffer_details.merge(self.get_aggressiveness(df),on='Author',how='left')#Aggressiveness 
     return  author_buffer_details
+
+  
+
+
+  
 
 
   
