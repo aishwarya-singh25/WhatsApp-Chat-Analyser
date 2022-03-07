@@ -14,6 +14,8 @@ import numpy as np
 from IPython.display import set_matplotlib_formats
 warnings.filterwarnings("ignore")
 import nltk
+nltk.data.path.append('/Users/stlp/Downloads/')
+nltk.download('stopwords')
 import whatsapp_chat_visualizer as wcv
 explode=[0.1,0,0.1,0.2,0.4]
 #nltk.data.path.append('/Users/stlp/Downloads/')
@@ -34,7 +36,7 @@ df=A.get_frequency(text_df)
 print(df)
 #wcv.bar_plot(df,max=5,sort=False)
 #wcv.pie(df,max=5,explode=explode)
-df=A.get_author_text_info(df_new,extra_StopWords,wordCloud=True)
+df=A.get_author_text_info(df_new,extra_StopWords,wordCloud=False)
 print(df.head())
 print("code ran succesfully")
 
