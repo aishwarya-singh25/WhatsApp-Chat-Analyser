@@ -3,9 +3,10 @@
 
 # In[ ]:
 
-#Module to evaluate the sentiment
 import string
 import nltk
+nltk.data.path.append('/Users/stlp/Downloads/')
+nltk.download('stopwords')
 import pandas as pd
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
