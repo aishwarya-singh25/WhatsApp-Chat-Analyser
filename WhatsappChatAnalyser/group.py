@@ -11,7 +11,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
-import author as A
+from WhatsappChatAnalyser import author as A
+import matplotlib.pyplot as plt
 maskpath='wordcloud trump.png'
 
 class Group:
@@ -35,6 +36,7 @@ class Group:
     self.Message = ' '.join(dstr)
     self.minHours = df['Hours'].min()
     self.maxHours = df['Hours'].max()
+    self.totalHours=df['Hours'].value_counts()
     
   #Remove authors with None value which could be because of some activities in the group like deleting a text or updating group description
   def __remove_null_authors(self,df):
@@ -94,6 +96,19 @@ class Group:
     ,'Media_shared':self.get_number_mediasShared(df),'Messages_texted':self.get_number_textMessages(df),
     'Messages_Deleted':self.get_number_deletedMessges(df),'daysInGroup':self.get_number_daysInGroup(df)}
     #columns=['Days_texted','Start_date','Last_date','Letter_count','Word_count','Media_shared','Messages_texted','Messages_Deleted','daysInGroup']
+    Hr_count = self.totalHours
+    dfHFreqs=pd.DataFrame({'Hours':Hr_count.index,'Count':Hr_count})
+    dfHFreqs = dfHFreqs.fillna(0)
+    title='Group Texting pattern'
+    xlabel='Time in 24hr format'
+    ylabel='Percentage of messages exchanged'
+    dfHFreqs['Hours']=dfHFreqs['Hours'].astype(int)
+    dfHFreqs.sort_values(by='Hours',ascending=True,inplace=True)
+    plt.figure()
+    ax=dfHFreqs.iloc[:,1].plot(legend=True,figsize=(12,6),color='r')
+    ax.set(xlabel=xlabel, ylabel=ylabel)
+    ax.set_xticks(ticks=np.arange(start=0,stop=24,step=1))
+    ax.set_xticklabels(labels=np.array(dfHFreqs['Hours']))
     return pd.DataFrame(data=author_buffer_details,index=[0])
 
   def get_aggressiveness(self,df):
@@ -117,11 +132,10 @@ class Group:
 
   def get_metrics(self,df):
     author_buffer_details=[self.get_consistency(df),self.get_frequency(df),self.get_aggressiveness(df)]
-    columns=['Consistency','Frequency','Agressiveness']
+    columns=['Consistency','Frequency','Aggressiveness']
     return pd.DataFrame(data=author_buffer_details,columns=columns)
 
-  def get_text_info(self,extra_StopWords=[],wordCloud=False):
-    list=[self.name,self.Message],
+  def get_text_info(self,extra_StopWords=[],wordCloud=False):#need to figure out how to add maskpath
     df=pd.DataFrame({'Author':self.name,'Message':self.Message},index=[0])
-    author_buffer_details = A.Author().get_text_info(df,extra_StopWords=[],wordCloud=False)
+    author_buffer_details = A.Author().get_text_info(df,extra_StopWords,wordCloud)
     return author_buffer_details  

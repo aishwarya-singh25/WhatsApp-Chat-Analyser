@@ -11,7 +11,6 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
-maskpath='wordcloud trump.png'
 class Author:
   def __init__(self, name=None, Date=None , Time=None , Message=None ,Hours=None):
     self.name = name
@@ -111,8 +110,8 @@ class Author:
     df=self.__remove_null_authors(df)
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Average number of messages per day for active days" + "\033[0m")
-    author_buffer_details['Agressiveness'] = (author_buffer_details['Messages_texted']/author_buffer_details['Days_texted']).round(2)
-    return author_buffer_details[['Author','Agressiveness']].sort_values(by='Agressiveness',ascending=False)
+    author_buffer_details['Aggressiveness'] = (author_buffer_details['Messages_texted']/author_buffer_details['Days_texted']).round(2)
+    return author_buffer_details[['Author','Aggressiveness']].sort_values(by='Aggressiveness',ascending=False)
    
 
   def get_consistency(self,df):
@@ -164,7 +163,7 @@ class Author:
         lstAllWords[i] = (lstAllWords[i]).lower()
     return ' '.join(lstAllWords) 
 
-  def get_text_info(self, df,extra_StopWords,wordCloud=False):
+  def get_text_info(self, df,extra_StopWords=[],wordCloud=None,maskpath=None):
     df=self.__remove_null_authors(df)
     #author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     dstr_grp=''
@@ -223,9 +222,9 @@ class Author:
       df['words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:])#All words
       df = wcs.sentiment_author(name,dstr,df)
       if wordCloud== True:
-            #print("start ", name, " end")
-            print('\U0001F923'+name)
-            wcv.wordCloud(WordsFreqdf,maskpath)
+        #print("start ", name, " end")
+        wcv.wordCloud(WordsFreqdf,maskpath)
+ 
 
     author_buffer_details=pd.DataFrame(data=df.Author.unique(),columns=['Author'])
     author_buffer_details=author_buffer_details.merge(df[['Author','avgWordspermessage','minWordspermessage',

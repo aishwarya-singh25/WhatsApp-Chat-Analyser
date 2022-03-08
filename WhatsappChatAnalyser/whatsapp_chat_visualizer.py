@@ -76,10 +76,12 @@ def transform_format(val):#transform the wine mask to generate white backgroun
 
 def wordCloud(WordsFreqdf,maskpath=None):
     #prepare data to generate word_cloud
-    #comment_mask = np.array(Image.open(maskpath))#download a wine mask
-    #transformed_comment_mask = np.ndarray((comment_mask.shape[0],comment_mask.shape[1]), np.int32)#instantiate a new transformed with same size as the original one
-    #for i in range(len(comment_mask)):
-    #   transformed_comment_mask[i] = list(map(transform_format, comment_mask[i]))
+    transformed_comment_mask= None
+    if maskpath != None:
+        comment_mask = np.array(Image.open(maskpath))#download a wine mask
+        transformed_comment_mask = np.ndarray((comment_mask.shape[0],comment_mask.shape[1]), np.int32)#instantiate a new transformed with same size as the original one
+        for i in range(len(comment_mask)):
+            transformed_comment_mask[i] = list(map(transform_format, comment_mask[i]))
     
     d = {'NA':1} #initial dictionary with NA
     for a, x in WordsFreqdf[0:20].values:
@@ -88,6 +90,7 @@ def wordCloud(WordsFreqdf,maskpath=None):
     #Use generate_word_cloud_from_frequency function  
     wordcloud = WordCloud(width = 1000, height = 1000, 
                 background_color ='white', 
+                mask=transformed_comment_mask,
                 #stopwords = stop, 
                 min_font_size = 25, contour_width=3, contour_color='firebrick').generate_from_frequencies(d)
     plt.figure()
