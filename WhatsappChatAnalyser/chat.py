@@ -11,7 +11,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import whatsapp_chat_visualizer as wcv
-maskpath='/Users/stlp/Downloads/wordcloud trump.png'
+maskpath='wordcloud trump.png'
 class Chat:
   def __init__(self, name=None, Date=None , Time=None , Message=None ,Hours=None):
     self.name = name

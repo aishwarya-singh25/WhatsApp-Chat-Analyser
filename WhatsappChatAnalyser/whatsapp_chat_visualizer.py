@@ -78,7 +78,7 @@ def wordCloud(WordsFreqdf,maskpath=None):
     #comment_mask = np.array(Image.open(maskpath))#download a wine mask
     #transformed_comment_mask = np.ndarray((comment_mask.shape[0],comment_mask.shape[1]), np.int32)#instantiate a new transformed with same size as the original one
     #for i in range(len(comment_mask)):
-    #    transformed_comment_mask[i] = list(map(transform_format, comment_mask[i]))
+    #   transformed_comment_mask[i] = list(map(transform_format, comment_mask[i]))
     
     d = {'NA':1} #initial dictionary with NA
     for a, x in WordsFreqdf[0:20].values:

@@ -1,4 +1,4 @@
-# WhatsApp-Chat-Analyser
+# WhatsAppChatAnalyser
 Short Description: Create word clouds and identify sentiments from the WhatsApp chats
 
 Broadly this pacakge will perform data clearning, text preprocessing, and data visualisation over the WhatsApp conversation that you submit. 
