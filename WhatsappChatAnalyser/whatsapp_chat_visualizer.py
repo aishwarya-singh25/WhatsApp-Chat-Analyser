@@ -48,11 +48,12 @@ def bar_plot(df,title=None,max=None,sort=False): #create a bar plot to display r
     plt.show()
 #Take dataframe with dimension :,2,explode: array length should be equal to max
 # title: title of the chart,max: max number of rows to display,sort: True means descending
-def pie(df,explode,title=None,max=None,sort=False):
+def pie(df,title=None,max=None,sort=False):
     if max==None:
         max_row=len(df)
     else:
         max_row=max
+    explode=np.arange(0,max_row*0.1,0.1)
     x_label= str(df.columns[1])
     y_label= str(df.columns[0])
     df=df.sort_values(by=x_label,ascending=sort).head(max_row)

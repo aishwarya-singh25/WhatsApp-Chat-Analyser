@@ -3,7 +3,9 @@ README.md
 pyproject.toml
 setup.cfg
 WhatsappChatAnalyser/__init__.py
+WhatsappChatAnalyser/author.py
 WhatsappChatAnalyser/chat.py
+WhatsappChatAnalyser/group.py
 WhatsappChatAnalyser/test.py
 WhatsappChatAnalyser/whatsapp_chat_sentiment.py
 WhatsappChatAnalyser/whatsapp_chat_visualizer.py

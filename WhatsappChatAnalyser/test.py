@@ -33,6 +33,8 @@ G.update_info(text_df)
 #df=A.get_metrics(text_df)
 
 x=G.get_text_info(text_df)
+y=A.get_text_info(text_df,extra_StopWords)
+wcv.pie(y[['Author','Pos']],max=5)
 #wcv.bar_plot(df,max=5,sort=False)
 #wcv.pie(df,max=5,explode=explode)
 #df=C.get_text_info(df_new,extra_StopWords,wordCloud=True)
