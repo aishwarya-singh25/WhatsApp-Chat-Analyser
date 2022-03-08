@@ -1,0 +1,12 @@
+WhatsappChatAnalyser/.DS_Store
+WhatsappChatAnalyser/.ipynb_checkpoints/WhatsApp_analyser-checkpoint.ipynb
+WhatsappChatAnalyser/WhatsApp_analyser.ipynb
+WhatsappChatAnalyser/__pycache__/**
+.DS_Store
+.idea/**
+WhatsappChatAnalyser/tests/.ipynb_checkpoints/**
+WhatsappChatAnalyser/tests/Untitled.ipynb
+WhatsappChatAnalyser/untitled.py
+dist/**
+WhatsappChatAnalyser/WhatsApp Chat with UW MSDS Fall21.txt
+whatsapp_chat_analyser.egg-info/**
