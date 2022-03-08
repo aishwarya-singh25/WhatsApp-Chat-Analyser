@@ -32,7 +32,7 @@ G.update_info(text_df)
 #df_days_texted=pd.DataFrame(text_df.groupby('Author')['Date'].nunique()).rename(columns={'Date':'Days_texted'})
 #df=A.get_metrics(text_df)
 
-x=G.get_number_textMessages(text_df)
+x=G.get_text_info(text_df)
 #wcv.bar_plot(df,max=5,sort=False)
 #wcv.pie(df,max=5,explode=explode)
 #df=C.get_text_info(df_new,extra_StopWords,wordCloud=True)

@@ -94,7 +94,7 @@ class Author:
 
   def get_stats(self,df):
     df=self.__remove_null_authors(df)
-    author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
+    author_buffer_details=pd.DataFrame(data=df.Author.unique(),columns=['Author'])
     #leftjoin all data gathered
     author_buffer_details=author_buffer_details.merge(self.get_number_activeDays(df),on='Author',how='left')#No. of active days in the group
     author_buffer_details=author_buffer_details.merge(self.get_startDate_endDate(df),on='Author',how='left')#join first and Last texting date
@@ -130,7 +130,7 @@ class Author:
 
   def get_metrics(self,df):
     df=self.__remove_null_authors(df)
-    author_buffer_details=pd.DataFrame({'Author':self.name.unique()})
+    author_buffer_details=pd.DataFrame(data=df.Author.unique(),columns=['Author'])
     #leftjoin all data gathered
     author_buffer_details=author_buffer_details.merge(self.get_consistency(df),on='Author',how='left')#consistency
     author_buffer_details=author_buffer_details.merge(self.get_frequency(df),on='Author',how='left')#Frequency
@@ -165,7 +165,6 @@ class Author:
 
   def get_text_info(self, df,extra_StopWords,wordCloud=False):
     df=self.__remove_null_authors(df)
-    self.update_info(df)
     #author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     dstr_grp=''
     dlist_grp=[]
@@ -227,7 +226,7 @@ class Author:
             print('\U0001F923'+name)
             wcv.wordCloud(WordsFreqdf,maskpath)
 
-    author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
+    author_buffer_details=pd.DataFrame(data=df.Author.unique(),columns=['Author'])
     author_buffer_details=author_buffer_details.merge(df[['Author','avgWordspermessage','minWordspermessage',
     'maxWordspermessage','emovocab','totalemojis','top5emojis','vocab','top5words','words','Pos', 'Neg', 'Neu']].drop_duplicates(),on='Author',how='left')
     return author_buffer_details  
