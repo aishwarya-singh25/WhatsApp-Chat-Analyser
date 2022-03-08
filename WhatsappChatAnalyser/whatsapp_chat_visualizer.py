@@ -50,9 +50,14 @@ def bar_plot(df,title = None, max = None, sort = False):
     for i, v in enumerate(df.iloc[:,1]):
         axes.text(v + v/100, i , str(v), color=bars[0].get_facecolor(), fontweight='bold')
     plt.show()
+<<<<<<< HEAD
 
 
 #create a pie chart
+=======
+#Take dataframe with dimension :,2,explode: array length should be equal to max
+# title: title of the chart,max: max number of rows to display,sort: True means descending
+>>>>>>> fcbe6f4145ae43104ba30f3ad00f00804595adcf
 def pie(df,explode,title=None,max=None,sort=False):
     if max==None:
         max_row=len(df)
@@ -85,7 +90,7 @@ def wordCloud(WordsFreqdf,maskpath=None):
     #comment_mask = np.array(Image.open(maskpath))#download a wine mask
     #transformed_comment_mask = np.ndarray((comment_mask.shape[0],comment_mask.shape[1]), np.int32)#instantiate a new transformed with same size as the original one
     #for i in range(len(comment_mask)):
-    #    transformed_comment_mask[i] = list(map(transform_format, comment_mask[i]))
+    #   transformed_comment_mask[i] = list(map(transform_format, comment_mask[i]))
     
     d = {'NA':1} #initial dictionary with NA
     for a, x in WordsFreqdf[0:20].values:
