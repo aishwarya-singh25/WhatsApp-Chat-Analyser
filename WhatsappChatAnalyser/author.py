@@ -94,7 +94,6 @@ class Author:
 
   def get_stats(self,df):
     df=self.__remove_null_authors(df)
-    self.update_info(df)
     author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     #leftjoin all data gathered
     author_buffer_details=author_buffer_details.merge(self.get_number_activeDays(df),on='Author',how='left')#No. of active days in the group
@@ -132,7 +131,6 @@ class Author:
   def get_metrics(self,df):
     df=self.__remove_null_authors(df)
     author_buffer_details=pd.DataFrame({'Author':self.name.unique()})
-    print(author_buffer_details)
     #leftjoin all data gathered
     author_buffer_details=author_buffer_details.merge(self.get_consistency(df),on='Author',how='left')#consistency
     author_buffer_details=author_buffer_details.merge(self.get_frequency(df),on='Author',how='left')#Frequency
