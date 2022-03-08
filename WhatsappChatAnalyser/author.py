@@ -103,6 +103,7 @@ class Author:
     author_buffer_details=author_buffer_details.merge(self.get_number_textMessages(df),on='Author',how='left')#join most talkative data
     author_buffer_details=author_buffer_details.merge(self.get_number_deletedMessges(df),on='Author',how='left')#join deleted message data
     author_buffer_details=author_buffer_details.merge(self.get_number_daysInGroup(df),on='Author',how='left')#No. of days in the group
+    author_buffer_details.fillna(0,inplace=True)
     return author_buffer_details
 
 
