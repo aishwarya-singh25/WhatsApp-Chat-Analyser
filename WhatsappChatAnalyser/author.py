@@ -4,13 +4,13 @@ import re
 import numpy as np
 import emoji
 import nltk
-import whatsapp_chat_sentiment as Sentiment
+from WhatsappChatAnalyser import whatsapp_chat_sentiment as wcs
 nltk.data.path.append('/Users/stlp/Downloads/')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import whatsapp_chat_visualizer as wcv
+from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
 maskpath='wordcloud trump.png'
 class Author:
   def __init__(self, name=None, Date=None , Time=None , Message=None ,Hours=None):
@@ -220,7 +220,7 @@ class Author:
       WordsFreqdf = WordsFreqdf.sort_values('Freq',ascending=False)
       df['top5words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:5])#Top 5 words
       df['words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:])#All words
-      df = Sentiment.sentiment_author(name,dstr,df)
+      df = wcs.sentiment_author(name,dstr,df)
       if wordCloud== True:
             #print("start ", name, " end")
             print('\U0001F923'+name)

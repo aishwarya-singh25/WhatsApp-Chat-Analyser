@@ -4,13 +4,13 @@ import re
 import numpy as np
 import emoji
 import nltk
-import whatsapp_chat_sentiment as Sentiment
+from WhatsappChatAnalyser import whatsapp_chat_sentiment as wcs
 nltk.data.path.append('/Users/stlp/Downloads/')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import whatsapp_chat_visualizer as wcv
+from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
 import author as A
 maskpath='wordcloud trump.png'
 
