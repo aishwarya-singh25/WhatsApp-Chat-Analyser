@@ -4,7 +4,7 @@ import re
 import numpy as np
 import emoji
 import nltk
-import sentiment
+import Sentiment
 nltk.data.path.append('/Users/stlp/Downloads/')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
@@ -65,7 +65,7 @@ class Chat:
     df['Neg']=0
     df['Pos']=0
     df['Neu']=0
-    for name in df['Author']:
+    for name in df['Author'].unique():
       data1 = df[df['Author']==name]
       dstr = ' '.join(data1['Message'])# create a single string containing all the words from all the messages
       dlist = data1['Message'].to_list()# convert the df column into a list
@@ -105,10 +105,11 @@ class Chat:
       WordsFreqdf = WordsFreqdf.sort_values('Freq',ascending=False)
       df['top5words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:5])#Top 5 words
       df['words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:])#All words
-      df = sentiment.sentiment_author(name,dstr,df)
+      df = Sentiment.sentiment_author(name,dstr,df)
       if wordCloud== True:
-        print('\U0001F923'+name)
-        wcv.wordCloud(WordsFreqdf,maskpath)
+            #print("start ", name, " end")
+            print('\U0001F923'+name)
+            wcv.wordCloud(WordsFreqdf,maskpath)
 
     author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     author_buffer_details=author_buffer_details.merge(df[['Author','avgWordspermessage','minWordspermessage',
