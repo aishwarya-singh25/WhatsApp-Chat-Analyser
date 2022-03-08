@@ -4,7 +4,7 @@ import re
 import numpy as np
 import emoji
 import nltk
-import whatsapp_chat_sentiment as Sentiment
+import sentiment
 nltk.data.path.append('/Users/stlp/Downloads/')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
