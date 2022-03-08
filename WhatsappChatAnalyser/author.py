@@ -230,7 +230,7 @@ class Author:
 
             NW = []#blank list to store no. of words in a message
             for n in dlist:
-            NW.append(len(n.split()))#store number of words in each message
+                NW.append(len(n.split()))#store number of words in each message
 
             df['avgWordspermessage'][df['Author']==name] = np.mean(NW)#mean of length of all words
             df['minWordspermessage'][df['Author']==name] = np.min(NW)#min number of words
@@ -264,7 +264,7 @@ class Author:
             df = wcs.sentiment_author(name,dstr,df)
             if wordCloud== True:
             #print("start ", name, " end")
-            wcv.wordCloud(WordsFreqdf,maskpath)
+                wcv.wordCloud(WordsFreqdf,maskpath)
    
 
         author_buffer_details=pd.DataFrame(data=df.Author.unique(),columns=['Author'])
