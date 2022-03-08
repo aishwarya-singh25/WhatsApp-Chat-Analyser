@@ -45,6 +45,7 @@ WhatsApp-Chat-Analyser/
 
 
 ## Installed Libraries and dependencies
+```
 python version 3.7 and above
 
 Cython                             0.29.23
@@ -145,5 +146,5 @@ win-unicode-console                0.5
 wincertstore                       0.2
 wordcloud                          1.8.1
 wrapt                              1.12.1
-
+```
 
