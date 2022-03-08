@@ -25,14 +25,14 @@ def AuthorStart(s):
     patterns = [
         '([\w]+):',                        # First Name
         '([\w]+[\s]+[\w]+):',              # First Name + Last Name
-       # '([\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
-       # '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
-       # '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
-       # '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
+        '([\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
+        '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
+        '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
+        '([\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+[\s]+[\w]+):',    # First Name + Middle Name + Last Name
         '([+]\d{2} \d{5} \d{5}):',         # Mobile Number (India)
         '([+]\d{1} [(]\d{3}[)] \d{3}[-]\d{4}):',   # Mobile Number (US)
-        '([+]\d{1} \S{5} \S{8}):',   # Mobile Number (US)
-        '([+]\d{1}[\s]\(\w{3}\)[\s]\w{3}-\w{4}):',
+       # '([+]\d{1} \S{5} \S{8}):',   # Mobile Number (US)
+        #'([+]\d{1}[\s]\(\w{3}\)[\s]\w{3}-\w{4}):',
         '([+]\d{2} \d{4} \d{7}):'           # Mobile Number (Europe)
     ]
     pattern = '^' + '|'.join(patterns)
