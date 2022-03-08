@@ -3,7 +3,7 @@
 
 # In[ ]:
 
-
+#Module to evaluate the sentiment
 import string
 import nltk
 import pandas as pd
