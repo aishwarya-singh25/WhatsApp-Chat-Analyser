@@ -5,7 +5,7 @@ Create visualizations and identify sentiments from the WhatsApp chats.
 pip install -i https://test.pypi.org/simple/ whatsapp-chat-analyser
 
 ## Usage
-This pacakge can be used to perform text clearning, text visualisation and sentiment analysis for the WhatsApp conversation between individuals and/or group.
+This package can be used to perform text clearning, text visualisation and sentiment analysis for the WhatsApp conversation between individuals and/or group.
 Accepted file format includes chats exported as txt files.
 
 ```
