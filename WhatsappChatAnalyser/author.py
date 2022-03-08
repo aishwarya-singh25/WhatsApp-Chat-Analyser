@@ -80,7 +80,7 @@ class Author:
         df=self.__remove_null_authors(df)
         media_messages = df[df['Message'] == '<Media omitted>']
         author_media_messages_value_counts = media_messages['Author'].value_counts().sort_values(ascending=True)
-        author_media_messages_value_counts_df = pd.DataFrame({'Author':author_media_messages_value_counts.index,'Media_shared':author_medi  a_messages_value_counts})
+        author_media_messages_value_counts_df = pd.DataFrame({'Author': author_media_messages_value_counts.index, 'Media_shared': author_media_messages_value_counts})
         return author_media_messages_value_counts_df
   
     #Find the most confused individual of the group
