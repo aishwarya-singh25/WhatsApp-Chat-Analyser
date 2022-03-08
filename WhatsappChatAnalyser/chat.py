@@ -105,7 +105,7 @@ class Chat:
       WordsFreqdf = WordsFreqdf.sort_values('Freq',ascending=False)
       df['top5words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:5])#Top 5 words
       df['words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:])#All words
-      df = Sentiment.sentiment_author(name,dstr,df)
+      df = sentiment.sentiment_author(name,dstr,df)
       if wordCloud== True:
             #print("start ", name, " end")
             print('\U0001F923'+name)
