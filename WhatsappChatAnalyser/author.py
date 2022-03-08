@@ -4,14 +4,13 @@ import re
 import numpy as np
 import emoji
 import nltk
-import whatsapp_chat_sentiment as Sentiment
+from WhatsappChatAnalyser import whatsapp_chat_sentiment as wcs
 nltk.data.path.append('/Users/stlp/Downloads/')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import whatsapp_chat_visualizer as wcv
-maskpath='wordcloud trump.png'
+from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
 class Author:
   def __init__(self, name=None, Date=None , Time=None , Message=None ,Hours=None):
     self.name = name
@@ -103,6 +102,7 @@ class Author:
     author_buffer_details=author_buffer_details.merge(self.get_number_textMessages(df),on='Author',how='left')#join most talkative data
     author_buffer_details=author_buffer_details.merge(self.get_number_deletedMessges(df),on='Author',how='left')#join deleted message data
     author_buffer_details=author_buffer_details.merge(self.get_number_daysInGroup(df),on='Author',how='left')#No. of days in the group
+    author_buffer_details.fillna(0,inplace=True)
     return author_buffer_details
 
 
@@ -110,8 +110,8 @@ class Author:
     df=self.__remove_null_authors(df)
     author_buffer_details= self.get_stats(df)
     print("\033[1m" + "Average number of messages per day for active days" + "\033[0m")
-    author_buffer_details['Agressiveness'] = (author_buffer_details['Messages_texted']/author_buffer_details['Days_texted']).round(2)
-    return author_buffer_details[['Author','Agressiveness']].sort_values(by='Agressiveness',ascending=False)
+    author_buffer_details['Aggressiveness'] = (author_buffer_details['Messages_texted']/author_buffer_details['Days_texted']).round(2)
+    return author_buffer_details[['Author','Aggressiveness']].sort_values(by='Aggressiveness',ascending=False)
    
 
   def get_consistency(self,df):
@@ -138,7 +138,7 @@ class Author:
     return  author_buffer_details
 
   #Remove stopWords and text coming from different sources
-  def clean_text(self,message,extra_StopWords):
+  def __clean_text(self,message,extra_StopWords):
 
     stop = stopwords.words('english')
     stop = stop + extra_StopWords
@@ -163,7 +163,7 @@ class Author:
         lstAllWords[i] = (lstAllWords[i]).lower()
     return ' '.join(lstAllWords) 
 
-  def get_text_info(self, df,extra_StopWords,wordCloud=False):
+  def get_text_info(self, df,extra_StopWords=[],wordCloud=None,maskpath=None):
     df=self.__remove_null_authors(df)
     #author_buffer_details=pd.DataFrame(data=self.name,columns=['Author'])
     dstr_grp=''
@@ -207,7 +207,7 @@ class Author:
       EmoFreqdf = EmoFreqdf.sort_values('Freq',ascending=False)
       df['top5emojis'][df['Author']==name] = ' '.join(EmoFreqdf['Emoji'][0:5])#store top 5 emojis
 
-      lstAllWords=self.clean_text(dstr,extra_StopWords).split()
+      lstAllWords=self.__clean_text(dstr,extra_StopWords).split()
 
       #remove those words which are in stop and emojis
       Words_df = pd.DataFrame({'Words':lstAllWords})
@@ -220,11 +220,11 @@ class Author:
       WordsFreqdf = WordsFreqdf.sort_values('Freq',ascending=False)
       df['top5words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:5])#Top 5 words
       df['words'][df['Author']==name] = ' '.join(WordsFreqdf['Word'][0:])#All words
-      df = Sentiment.sentiment_author(name,dstr,df)
+      df = wcs.sentiment_author(name,dstr,df)
       if wordCloud== True:
-            #print("start ", name, " end")
-            print('\U0001F923'+name)
-            wcv.wordCloud(WordsFreqdf,maskpath)
+        #print("start ", name, " end")
+        wcv.wordCloud(WordsFreqdf,maskpath)
+ 
 
     author_buffer_details=pd.DataFrame(data=df.Author.unique(),columns=['Author'])
     author_buffer_details=author_buffer_details.merge(df[['Author','avgWordspermessage','minWordspermessage',
