@@ -139,7 +139,7 @@ class Author:
     return  author_buffer_details
 
   #Remove stopWords and text coming from different sources
-  def clean_text(self,message,extra_StopWords):
+  def __clean_text(self,message,extra_StopWords):
 
     stop = stopwords.words('english')
     stop = stop + extra_StopWords
@@ -208,7 +208,7 @@ class Author:
       EmoFreqdf = EmoFreqdf.sort_values('Freq',ascending=False)
       df['top5emojis'][df['Author']==name] = ' '.join(EmoFreqdf['Emoji'][0:5])#store top 5 emojis
 
-      lstAllWords=self.clean_text(dstr,extra_StopWords).split()
+      lstAllWords=self.__clean_text(dstr,extra_StopWords).split()
 
       #remove those words which are in stop and emojis
       Words_df = pd.DataFrame({'Words':lstAllWords})
