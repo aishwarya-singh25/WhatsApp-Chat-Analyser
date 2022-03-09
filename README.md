@@ -2,7 +2,7 @@
 Create visualizations and identify sentiments from the WhatsApp chats.
 
 ## Installing Package
-pip install -i https://test.pypi.org/simple/ whatsapp-chat-analyser
+pip install -i https://test.pypi.org/simple/ whatsapp-chat-analyser==1.0.0
 
 ## Usage
 This package can be used to perform text clearning, text visualisation and sentiment analysis for the WhatsApp conversation between individuals and/or group.
@@ -23,24 +23,22 @@ WhatsApp-Chat-Analyser/
      |- WhatsApp_analyser_ver3-checkpoint.ipynb
   |- WhatsappChatAnalyser/
      |- __init__.py 
-     |- Sentiment.py
      |- author.py
-     |- chat.py
+     |- group.py
      |- whatsapp_chat_sentiment.py
      |- whatsapp_chat_visualizer.py
      |- whatsapp_text_cleaner.py
-     |- WhatsApp_analyser.ipynb
-     |- WhatsApp Chat with UW MSDS Fall21.txt
   |- tests/
      |- __init__.py 
-     |- author_tests.py
-     |- chat_test.py
-     |- whatsapp_chat_visualizer.py
-     |- whatsapp_text_cleaner_test.py
-  |- LISCENCE
+     |- test_group.py
+     |- test_whatsapp_chat_sentiment.py
+     |- Test_data.csv
+  |- LICENSE
   |- README.md
   |- pyproject.toml
-  |- setup.py
+  |- setup.cfg
+  |- requirements.txt
+  
 ```
 
 
