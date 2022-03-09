@@ -17,16 +17,6 @@ python -m pip install -r requirements.txt
 WhatsApp is one of the most commonly used mode of communication. It has more than 2 billion  users worldwide. An average user spends more than 195 minutes per week on WhatsApp. 
 We aim to analyse WhatsApp chats to generate insights about the activity in group chats or 1:1 chats. The user is anyone who would like to create a clean dataframe from a WhatsApp text file or see information like the number of messages, participant activities, sentiment of the chat and various visualizations that help understand what is going on in the chat file. 
 
-## Usage
-```
-from WhatsappChatAnalyser import whatsapp_text_cleaner as wtc
-from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
-df = wtc.load_clean_dataframe('WhatsAppChatDemo.txt')
-x = A.get_stats(df)
-wcv.bar_plot(x[['Author','Media_shared']],max=5,sort=False)
-```
-Please refer to the sample notebook to see how to use this package.
-
 ## Package Structure
 ```
 WhatsApp-Chat-Analyser/
@@ -49,6 +39,15 @@ WhatsApp-Chat-Analyser/
   |- requirements.txt
   
 ```
+## Usage
+```
+from WhatsappChatAnalyser import whatsapp_text_cleaner as wtc
+from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
+df = wtc.load_clean_dataframe('WhatsAppChatDemo.txt')
+x = A.get_stats(df)
+wcv.bar_plot(x[['Author','Media_shared']],max=5,sort=False)
+```
+Please refer to the sample notebook to see how to use this package.
 
 ## References
 Our package is a one stop shop for cleaning, visualization, and performing sentiment analysis for a given input file. This has a lot of utility across multiple use-cases. The user does not have to perform the cleaning tasks manually and work on each individual aspect. Main requirement is package installation and the input text file. We have thus incorporated and built upon the functionalities from the following libraries:
