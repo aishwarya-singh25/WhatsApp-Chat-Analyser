@@ -10,7 +10,8 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
+import whatsapp_chat_visualizer as wcv
+# instead of using from so and so import, i have used just import. 
 class Author:
     def __init__(self, name=None, Date=None , Time=None , Message=None ,Hours=None):
         self.name = name
