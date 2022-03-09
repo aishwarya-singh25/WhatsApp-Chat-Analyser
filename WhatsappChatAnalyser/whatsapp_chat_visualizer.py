@@ -5,6 +5,8 @@ import seaborn as sns
 sns.set(style='darkgrid')
 from wordcloud import WordCloud
 from PIL import Image
+
+
 #Take dataframe with dimension :,2, title: title of the chart,max: max number of rows to display,sort: True means descending
 def bar_plot(df,title=None,max=None,sort=False): #create a bar plot to display results
     if max==None:

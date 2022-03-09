@@ -41,7 +41,3 @@ y=A.get_text_info(text_df,extra_StopWords,wordCloud=False)
 #df=C.get_text_info(df_new,extra_StopWords,wordCloud=True)
 print(y)
 print("code ran succesfully")
-
-
-
-
