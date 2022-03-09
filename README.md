@@ -29,8 +29,6 @@ Please refer to the following notebook to see how to use this package.
 ## Package Structure
 ```
 WhatsApp-Chat-Analyser/
-  |- .ipynb_checkpoints
-     |- WhatsApp_analyser_ver3-checkpoint.ipynb
   |- WhatsappChatAnalyser/
      |- __init__.py 
      |- author.py
