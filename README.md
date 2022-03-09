@@ -21,7 +21,7 @@ We aim to analyse WhatsApp chats to generate insights about the activity in grou
 ```
 from WhatsappChatAnalyser import whatsapp_text_cleaner as wtc
 from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
-df = wtc.load_clean_dataframe('WhatsAppChatUWMSDS.txt')
+df = wtc.load_clean_dataframe('WhatsAppChatDemo.txt')
 x = A.get_stats(df)
 wcv.bar_plot(x[['Author','Media_shared']],max=5,sort=False)
 ```
