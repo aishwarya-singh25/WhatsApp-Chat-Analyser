@@ -21,7 +21,7 @@ maskpath='wordcloud trump.png'
 explode=[0.1,0,0.1,0.2,0.4]
 #nltk.data.path.append('/Users/stlp/Downloads/')
 extra_StopWords = ["thats","dont","<Media omitted>","media","Media","Omitted","omitted","also","like","https","from","all","also","and","any","are","but","can","cant","cry","due","etc","few","for","get","had","has","hasnt","have","her","here","hers","herself","him","himself","his","how","inc","into","its","ltd","may","nor","not","now","off","once","one","only","onto","our","ours","out","over","own","part","per","put","see","seem","she","than","that","the","their","them","then","thence","there","these","they","this","those","though","thus","too","top","upon","very","via","was","were","what","when","which","while","who","whoever","whom","whose","why","will","with","within","without","would","yet","you","your","yours","the"]
-filepath='/Users/stlp/Downloads/WhatsApp Chat with UW MSDS Fall21.txt'
+filepath='/Users/stlp/Downloads/WhatsApp Chat with Demo.txt'
 text_df=wtc.load_clean_dataframe(filepath)
 maskpath='/Users/stlp/Documents/wordcloud mask.jpg'
 A=author.Author()
@@ -34,7 +34,7 @@ G.update_info(text_df)
 #df=A.get_metrics(text_df)
 
 #x=A.get_text_info(text_df)
-y=G.get_text_info(extra_StopWords,wordCloud=True)
+y=A.get_text_info(text_df,extra_StopWords,wordCloud=False)
 #wcv.pie(x[['Author','Pos']],max=1)
 #wcv.bar_plot(df,max=5,sort=False)
 #wcv.pie(df,max=5,explode=explode)
