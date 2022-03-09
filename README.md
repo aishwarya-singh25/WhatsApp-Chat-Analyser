@@ -19,12 +19,13 @@ We aim to analyse WhatsApp chats to generate insights about the activity in grou
 
 ## Usage
 ```
-import whatsapp_chat_visualizer as wcv
-wcv.pie(param = , data = )
-# code for wordcloud
-# code for sentiment analysis
+from WhatsappChatAnalyser import whatsapp_text_cleaner as wtc
+from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
+df = wtc.load_clean_dataframe('WhatsAppChatUWMSDS.txt')
+x = A.get_stats(df)
+wcv.bar_plot(x[['Author','Media_shared']],max=5,sort=False)
 ```
-Please refer to the following notebook to see how to use this package.
+Please refer to the sample notebook to see how to use this package.
 
 ## Package Structure
 ```
