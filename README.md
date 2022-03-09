@@ -46,6 +46,7 @@ from WhatsappChatAnalyser import whatsapp_chat_visualizer as wcv
 df = wtc.load_clean_dataframe('WhatsAppChatDemo.txt')
 x = A.get_stats(df)
 wcv.bar_plot(x[['Author','Media_shared']],max=5,sort=False)
+wcv.pie(x[['Author','Media_shared']], max=7) 
 ```
 Please refer to the sample notebook to see how to use this package.
 
