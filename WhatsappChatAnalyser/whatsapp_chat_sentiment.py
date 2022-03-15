@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -82,4 +80,3 @@ def sentiment_author(name, sentences, output_df):
     output_df['Neg'][output_df['Author'] == name] = df_temp['Neg'].mean()
 
     return output_df
->>>>>>> Stashed changes
