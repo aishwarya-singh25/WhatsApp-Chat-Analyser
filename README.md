@@ -1,6 +1,6 @@
 # WhatsApp-Chat-Analyser
 Create visualizations and identify sentiments from the WhatsApp chats. This package can be used to perform text clearning, text visualisation and sentiment analysis for the WhatsApp conversation between individuals and/or group.
-Accepted file format includes chats exported as txt files.
+Accepted file format includes chats exported as raw txt files.
 
 ## Installing Package
 ```
