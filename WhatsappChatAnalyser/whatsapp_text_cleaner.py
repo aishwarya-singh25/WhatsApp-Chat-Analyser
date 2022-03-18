@@ -12,6 +12,16 @@ import pandas as pd
 # Function to check if the text is a new one or a continuation of old one.
 
 def DateStart(s):
+    """
+    To check the validity of the date pattern in the text file
+
+    Parameters:
+    s (string): The string for which we perform a regex check
+
+    Returns:
+    true, false (boolean) : Returns true f the format of the input string is valid and false otherwise
+
+    """
     patterns = ['([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)(\d{2}|\d{4}), ([0-9][0-9]|[0-9]):([0-9][0-9])',
                 '([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)(\d{2}|\d{4}), ([0-9][0-9]|[0-9]):([0-9][0-9])']
     pattern = '^' + '|'.join(patterns)
@@ -23,6 +33,17 @@ def DateStart(s):
 
 # Function to check if there is any author of the text
 def AuthorStart(s):
+    """
+    To check if there is an author for the input text by performing a regex check to match the format of
+    first name, first name and last name, first name and middle name and last name, or mobile number
+
+    Parameters:
+    s (string): The string for which we need to perform regex validation check
+
+    Returns:
+    true, false (boolean) : Returns true if the input string is valid and false otherwise
+
+    """
     patterns = [
         # First Name
         '([\w]+):',
@@ -51,6 +72,16 @@ def AuthorStart(s):
 
 # Function to fetch details a single line of text: date,time,author,message
 def getDetails(line):
+    """
+    To get the date, time, author, and message from an input text line
+
+    Parameters:
+    sentence (string): A single input line of the data for which we need to generate the details
+
+    Returns:
+    date, time, author, message : The date, time, author, and message from an input text line
+
+    """
     splitLine = line.split(' - ')
     dateTime = splitLine[0]
     date, time = dateTime.split(', ')
@@ -65,6 +96,16 @@ def getDetails(line):
 
 
 def intial_dataframe(filepath):
+    """
+    To generate a formatted, preprocessed, and clean dataframe for further processing
+
+    Parameters:
+    filepath (string): The filepath at which the raw text file is available
+
+    Returns:
+    dataframe : A clean dataframe than can be used for further queries
+
+"""
     # List to keep track of data so it can be used by a Pandas dataframe
     parsedData = []
     ChatPath = filepath
@@ -117,6 +158,16 @@ def intial_dataframe(filepath):
 
 # Insert hours of the day in 24hrs format
 def convert24(str1):
+    """
+    Converts the time into a 24-hour format
+
+    Parameters:
+    String (string): The time string which needs to be converted
+
+    Returns:
+    Time (string): The time string converted into a 24-hour format
+
+    """
     # Checking if last two elements of time
     # is AM and first two elements are 12
     if (str1[-2:]).lower() == "am" and (str1[:2]).lower() == "12":
@@ -132,12 +183,21 @@ def convert24(str1):
         return str1[:2].replace(':', '')
 
     else:
-
         # add 12 to hours and remove PM
         return str(int(str1[:2].replace(':', '')) + 12)
 
 
 def load_clean_dataframe(filepath):
+    """
+    To generate a formatted, preprocessed, and clean dataframe for further processing
+
+    Parameters:
+    filepath (string): The filepath at which the raw text file is available
+
+    Returns:
+    dataframe : A clean dataframe than can be used for further queries
+
+    """
     df = intial_dataframe(filepath)
     # converting date from string to date format
     df['Date'] = pd.to_datetime(df['Date'], dayfirst=True)

@@ -23,15 +23,15 @@ install:
 
 
 # a list of commands to run before the main script
-#before_script:
-#    - "flake8 --ignore=E501,F401,F403 mlpipeline_analyzer app tests"
+before_script:
+    - "flake8 --ignore=E501 WhatsappChatAnalyser"
 
 # the actual commands to run
 script:
     - python run -m unittest discover
 
-# generate a coverage report to send to back to user
-#after_success:
-#    - coverage run --source=mlpipeline_analyzer,app,tests -m pytest tests/
-#    - coverage report
-#    - coveralls
+ generate a coverage report to send to back to user
+after_success:
+    - coverage run --source=WhatsappChatAnalyser -m pytest tests/
+    - coverage report
+    - coveralls
