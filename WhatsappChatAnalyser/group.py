@@ -15,10 +15,10 @@ class Group:
                  Number_of_Authors=None, 
                  Time=None, Message=None, Hours=None):
         """
-        To create a bar plot to display results
+        To initialize the class
         
         Parameters:
-        Name (Mstring) : Name of auhtor
+        Name (string) : Name of auhtor
         Number_of_Authors (int) : No. of authors
         Time (Time) : Time of the message
         Message (string) : Message from the author
