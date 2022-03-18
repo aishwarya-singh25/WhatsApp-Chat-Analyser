@@ -15,14 +15,15 @@ class Group:
                  Number_of_Authors=None, 
                  Time=None, Message=None, Hours=None):
         """
-        To initialize the class
+        To create a bar plot to display results
         
         Parameters:
-        Name (string) : Name of auhtor
+        self (class): ??
+        Name (Mstring) : Name of auhtor
         Number_of_Authors (int) : No. of authors
         Time (Time) : Time of the message
         Message (string) : Message from the author
-        Hours (Time) : Hours part of the time of message
+        Hours (Time) : Time in 24 hrs format
 
         Returns:
         Attributes of the class
@@ -305,7 +306,7 @@ class Group:
     def get_text_info(self, extra_StopWords=[], wordCloud=False):
         """
         
-        To generate a dataframe and wordcloud
+        ??
         
         Parameters:
         df (dataframe): dataframe created from text file
