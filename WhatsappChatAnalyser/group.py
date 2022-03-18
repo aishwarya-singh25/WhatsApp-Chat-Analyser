@@ -13,9 +13,8 @@ maskpath = 'wordcloud trump.png'
 class Group:
     def __init__(self, Name=None,
                  Number_of_Authors=None, 
-                 Time=None, Message=None, Hours=None):
+                 minTime=None,maxTime=None, Message=None, minHours=None,maxHours=None,totalHours=None):
         """
-        To create a bar plot to display results
         
         Parameters:
         self (class): ??
@@ -31,9 +30,12 @@ class Group:
         """
         self.Name = Name
         self.Number_of_Authors = Number_of_Authors
-        self.Time = Time
+        self.minTime = minTime
+        self.maxTime = maxTime
         self.Message = Message
-        self.Hours = Hours
+        self.minHours = minHours
+        self.maxHours = maxHours
+        self.totalHours = totalHours
 
     def update_info(self, df):
         """ 
@@ -102,10 +104,8 @@ class Group:
         Returns:
         int : Count of media shared
        """
-        author_media_messages_value_counts_df = 
-        A.Author().get_number_mediasShared(df)
-        self.Media_shared = 
-        author_media_messages_value_counts_df.Media_shared.sum()
+        author_media_messages_value_counts_df = A.Author().get_number_mediasShared(df)
+        self.Media_shared = author_media_messages_value_counts_df.Media_shared.sum()
         return self.Media_shared
 
     def get_number_deletedMessges(self, df):
@@ -120,10 +120,8 @@ class Group:
         int : Count of media shared
         
         """
-        deleted_messages_counts_df = 
-        A.Author().get_number_deletedMessges(df)
-        self.Messages_Deleted = 
-        deleted_messages_counts_df.Messages_Deleted.sum()
+        deleted_messages_counts_df = A.Author().get_number_deletedMessges(df)
+        self.Messages_Deleted = deleted_messages_counts_df.Messages_Deleted.sum()
         return self.Messages_Deleted
 
     # Total no. of letters & total no. of words

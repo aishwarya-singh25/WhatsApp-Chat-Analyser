@@ -1,11 +1,11 @@
-Author,Message,Date,Time
-Rob,Hello world,2020-03-06,12:03 am
-Ben,Hi how do you do?,2020-03-07,9:23 pm
-Pirate,Good. You?,2020-03-07,9:24 pm
-Rob,When will classes be?,2020-03-07,9:34 pm
-Ben,Hello Rob,2020-03-07,9:35 pm
-Linda,Random text message check?,2020-03-07,9:37 pm
-Rob,Looks like its working!,2020-03-07,9:37 pm
-Hillary,Happy New Year!,2020-03-08,7:06 am
-Pirate,"Sure man, was away from my phone",2020-03-08,7:41 am
-John,Call you later,2020-03-14,3:03 am
+Author,Message,Date,Time,Hours
+Rob,Hello world,2020-03-06,12:03 am,12
+Ben,Hi how do you do?,2020-03-07,9:23 pm,21
+Pirate,Good. You?,2020-03-07,9:24 pm,21
+Rob,When will classes be?,2020-03-07,9:34 pm,21
+Ben,Hello Rob,2020-03-07,9:35 pm,21
+Linda,Random text message check?,2020-03-07,9:37 pm,21
+Rob,Looks like its working!,2020-03-07,9:37 pm,21
+Hillary,Happy New Year!,2020-03-08,7:06 am,7
+Pirate,"Sure man, was away from my phone",2020-03-08,7:41 am,7
+John,Call you later,2020-03-14,3:03 am,3

@@ -12,6 +12,7 @@ class UnitTests(unittest.TestCase):
         g.update_info(df)
         result = g.get_text_info(wordCloud=False)
         self.assertTrue(len(result.columns), 13)
+        print('success')
         return None
 
 if __name__ == '__main__':
