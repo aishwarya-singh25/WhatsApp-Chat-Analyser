@@ -17,12 +17,11 @@ class Group:
         """
         
         Parameters:
-        self (class): ??
-        Name (Mstring) : Name of auhtor
+
+        Name (Mstring) : Name of author
         Number_of_Authors (int) : No. of authors
-        Time (Time) : Time of the message
         Message (string) : Message from the author
-        Hours (Time) : Time in 24 hrs format
+        totalHours (Time) : Total number of hours texted in the group
 
         Returns:
         Attributes of the class
@@ -30,11 +29,7 @@ class Group:
         """
         self.Name = Name
         self.Number_of_Authors = Number_of_Authors
-        self.minTime = minTime
-        self.maxTime = maxTime
         self.Message = Message
-        self.minHours = minHours
-        self.maxHours = maxHours
         self.totalHours = totalHours
 
     def update_info(self, df):
@@ -49,13 +44,9 @@ class Group:
         dstr = []
         self.name = 'Group'
         self.Number_of_Authors = df['Author'].nunique()
-        self.minTime = df['Time'].min()
-        self.maxTime = df['Time'].max()
         for msg in df['Message']:
             dstr = dstr + msg.split()
         self.Message = ' '.join(dstr)
-        self.minHours = df['Hours'].min()
-        self.maxHours = df['Hours'].max()
         self.totalHours = df['Hours'].value_counts()
 
     # Remove authors with None value which could be because
@@ -304,16 +295,12 @@ class Group:
     def get_text_info(self, extra_StopWords=[], wordCloud=False):
         """
         
-        ??
-        
         Parameters:
-        df (dataframe): dataframe created from text file
         extra_StopWords (list): Extra stopwords for NLP
         wordCloud (boolean): Whether to create a wordcloud
         
         Returns:
-        dataframe : Dataframe with columns to create wordcloud
-        wordcloud
+        dataframe : Dataframe with 1 row and multiple columns for
         
         """
         # need to figure out how to add maskpath
