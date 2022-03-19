@@ -21,7 +21,7 @@ class Group:
         Name (Mstring) : Name of author
         Number_of_Authors (int) : No. of authors
         Message (string) : Message from the author
-        totalHours (Time) : Total number of hours texted in the group
+        totalHours (Time) : Total number of messages texted each hour of the day 
 
         Returns:
         Attributes of the class
