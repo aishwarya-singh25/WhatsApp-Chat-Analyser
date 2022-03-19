@@ -300,7 +300,7 @@ class Group:
         wordCloud (boolean): Whether to create a wordcloud
         
         Returns:
-        dataframe : Dataframe with 1 row and multiple columns for
+        dataframe : Dataframe with 1 row and multiple columns for different information about the combined group text
         
         """
         # need to figure out how to add maskpath
