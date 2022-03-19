@@ -5,7 +5,7 @@ import datetime
 import re
 import emoji
 import nltk
-from WhatsappChatAnalyser import whatsapp_chat_sentiment as wcs
+import whatsapp_chat_sentiment as wcs
 import whatsapp_chat_visualizer as wcv
 from nltk.corpus import stopwords
 nltk.data.path.append('/Users/stlp/Downloads/')
