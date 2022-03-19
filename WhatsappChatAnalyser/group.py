@@ -2,7 +2,7 @@ import datetime
 import nltk
 import numpy as np
 import pandas as pd
-from WhatsappChatAnalyser import author as A
+import author as A
 import matplotlib.pyplot as plt
 
 nltk.data.path.append('/Users/stlp/Downloads/')
